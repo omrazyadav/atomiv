@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Phone } from 'lucide-react'
 import Image from 'next/image'
+import { trackButtonClick, trackFeatureClick } from '@/lib/analytics'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -40,6 +41,9 @@ export function Header() {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    // Track navigation clicks
+    trackFeatureClick(`nav_${sectionId}`)
+    
     const element = document.getElementById(sectionId)
     if (element) {
       const offsetTop = element.offsetTop - 80 // Account for header height
@@ -49,6 +53,16 @@ export function Header() {
       })
     }
     setIsMenuOpen(false) // Close mobile menu after clicking
+  }
+
+  const handleGetStartedClick = () => {
+    trackButtonClick('get_started', 'header')
+    scrollToSection('pricing')
+  }
+
+  const handleLogoClick = () => {
+    trackButtonClick('logo', 'header')
+    scrollToSection('hero')
   }
 
   const navItems = [
@@ -63,7 +77,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection('hero')}>
+          <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
             <Image
               src="/assets/Atomiv Black Full Transparent.svg"
               alt="Atomiv AI"
@@ -98,7 +112,7 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-4">
             <Button 
               className="bg-black hover:bg-gray-800 text-white px-6 py-2 transition-all duration-200 hover:scale-105"
-              onClick={() => scrollToSection('pricing')}
+              onClick={handleGetStartedClick}
             >
               <Phone className="w-4 h-4 mr-2" />
               Get Started
@@ -110,7 +124,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen)
+                trackButtonClick('mobile_menu', 'header')
+              }}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -136,7 +153,7 @@ export function Header() {
               ))}
               <Button 
                 className="w-full bg-black hover:bg-gray-800 text-white mt-4"
-                onClick={() => scrollToSection('pricing')}
+                onClick={handleGetStartedClick}
               >
                 <Phone className="w-4 h-4 mr-2" />
                 Get Started
