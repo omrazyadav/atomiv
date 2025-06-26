@@ -12,13 +12,35 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-black">
       <EnhancedNavBarDemo />
-      <HeroSection />
-      <PainPoints />
-      <HowItWorks />
-      <EnhancedFeatures />
-      <TestimonialsDemo />
-      <Pricing />
-      <FAQ />
+      
+      <section id="hero">
+        <HeroSection />
+      </section>
+      
+      <section id="painpoints">
+        <PainPoints />
+      </section>
+      
+      <section id="how-it-works">
+        <HowItWorks />
+      </section>
+      
+      <section id="features">
+        <EnhancedFeatures />
+      </section>
+      
+      <section id="testimonials">
+        <TestimonialsDemo />
+      </section>
+      
+      <section id="pricing">
+        <Pricing />
+      </section>
+      
+      <section id="faq">
+        <FAQ />
+      </section>
+      
       <Footer />
     </div>
   )
