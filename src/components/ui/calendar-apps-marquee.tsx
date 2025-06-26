@@ -127,16 +127,24 @@ export function CalendarAppsMarquee() {
         </p>
       </div>
       
-      <Marquee direction="left" className="py-4">
-        {apps.map((Logo, index) => (
-          <div
-            key={index}
-            className="relative h-full w-fit mx-[3rem] flex items-center justify-start"
-          >
-            <Logo />
-          </div>
-        ))}
-      </Marquee>
+      <div className="relative">
+        {/* Left fade gradient */}
+        <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+        
+        {/* Right fade gradient */}
+        <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+        
+        <Marquee direction="left" className="py-4">
+          {apps.map((Logo, index) => (
+            <div
+              key={index}
+              className="relative h-full w-fit mx-[3rem] flex items-center justify-start"
+            >
+              <Logo />
+            </div>
+          ))}
+        </Marquee>
+      </div>
     </div>
   )
 } 

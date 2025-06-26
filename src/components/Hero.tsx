@@ -7,7 +7,7 @@ import { Phone, PlayCircle, CheckCircle } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white to-gray-50 pt-28 pb-16 sm:pt-24 sm:pb-20 lg:py-24">
+    <section className="bg-gradient-to-b from-white to-gray-50 pt-32 pb-16 sm:pt-28 sm:pb-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Content */}
@@ -22,12 +22,12 @@ export function Hero() {
                 🤖 AI-Powered Phone Assistant
               </Badge>
               
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
+              <h1 className="text-5xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
                 Never Miss a 
                 <span className="text-gray-600"> Customer</span> Again
               </h1>
               
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-xl text-gray-600 leading-relaxed">
                 Your AI receptionist answers every call, books appointments, and converts 
                 prospects into customers while you focus on running your business.
               </p>

@@ -19,7 +19,7 @@ export function Marquee({
   return (
     <div 
       className={cn(
-        "w-full overflow-hidden",
+        "w-full overflow-hidden relative",
         className
       )} 
       {...props}
@@ -27,13 +27,17 @@ export function Marquee({
       <div 
         className="flex animate-marquee min-w-max"
         style={{
-          animation: `marquee 40s linear infinite`
+          animation: `marquee 45s linear infinite`,
+          animationPlayState: pauseOnHover ? 'paused' : 'running'
         }}
       >
-        <div className="flex shrink-0">
+        <div className="flex shrink-0 items-center">
           {children}
         </div>
-        <div className="flex shrink-0">
+        <div className="flex shrink-0 items-center">
+          {children}
+        </div>
+        <div className="flex shrink-0 items-center">
           {children}
         </div>
       </div>
