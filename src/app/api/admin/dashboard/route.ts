@@ -13,6 +13,29 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   
+  // Return empty data if Supabase is not configured
+  if (!supabase) {
+    return NextResponse.json({
+      leads: [],
+      quotes: [],
+      demos: [],
+      subscribers: [],
+      analytics: [],
+      demoPages: [],
+      demoAnalytics: [],
+      stats: {
+        totalLeads: 0,
+        totalQuotes: 0,
+        totalDemos: 0,
+        totalSubscribers: 0,
+        pendingQuotes: 0,
+        pendingDemos: 0,
+        activeDemoPages: 0,
+        totalDemoViews: 0
+      }
+    })
+  }
+  
   try {
     // Get all the data in parallel for performance
     const [

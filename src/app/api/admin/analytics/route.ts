@@ -5,6 +5,23 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const range = searchParams.get('range') || '7d'
   
+  // Return mock data if Supabase is not configured
+  if (!supabase) {
+    return NextResponse.json({
+      totalViews: 0,
+      uniqueVisitors: 0,
+      avgViewDuration: 0,
+      conversionRate: 0,
+      topDemos: [],
+      formStats: {
+        pricing: { views: 0, starts: 0, completions: 0 },
+        demo: { views: 0, starts: 0, completions: 0 },
+        newsletter: { views: 0, starts: 0, completions: 0 }
+      },
+      dailyStats: []
+    })
+  }
+  
   try {
     // Calculate date range
     const endDate = new Date()

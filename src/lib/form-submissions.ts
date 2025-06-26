@@ -25,6 +25,8 @@ export async function trackFormEvent(
   eventType: 'view' | 'start' | 'submit' | 'abandon',
   metadata?: Record<string, any>
 ) {
+  if (!supabase) return // Skip if Supabase not configured
+  
   try {
     const clientInfo = getClientInfo()
     const utmParams = getUTMParams()
@@ -54,6 +56,8 @@ async function createOrUpdateLead(
   source: 'pricing' | 'demo' | 'newsletter' | 'cta',
   additionalData: Partial<Lead> = {}
 ): Promise<string | null> {
+  if (!supabase) return null // Return null if Supabase not configured
+  
   try {
     const clientInfo = getClientInfo()
     const utmParams = getUTMParams()
@@ -117,6 +121,8 @@ export async function submitQuoteRequest(formData: {
   currentSolution?: string
   specialRequirements?: string
 }) {
+  if (!supabase) return { success: false, error: 'Database not configured' }
+  
   try {
     // Track form submission
     await trackFormEvent('pricing', 'submit', formData)
@@ -177,6 +183,8 @@ export async function submitDemoRequest(formData: {
   preferredTime?: string
   message?: string
 }) {
+  if (!supabase) return { success: false, error: 'Database not configured' }
+  
   try {
     // Track form submission
     await trackFormEvent('demo', 'submit', formData)
@@ -228,6 +236,8 @@ export async function submitDemoRequest(formData: {
 
 // Subscribe to newsletter
 export async function subscribeToNewsletter(email: string, firstName?: string, lastName?: string, source: string = 'footer') {
+  if (!supabase) return { success: false, error: 'Database not configured' }
+  
   try {
     // Track form submission
     await trackFormEvent('newsletter', 'submit', { email, source })
@@ -283,6 +293,8 @@ export async function subscribeToNewsletter(email: string, firstName?: string, l
 
 // Quick CTA submission (email only)
 export async function submitCTAContact(email: string, source: string = 'cta') {
+  if (!supabase) return { success: false, error: 'Database not configured' }
+  
   try {
     // Track form submission
     await trackFormEvent('newsletter', 'submit', { email, source })
