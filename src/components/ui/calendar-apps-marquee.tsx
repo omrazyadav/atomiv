@@ -13,7 +13,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Google Calendar</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Google Calendar</span>
     </div>
   ),
   
@@ -28,7 +28,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Calendly</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Calendly</span>
     </div>
   ),
   
@@ -43,7 +43,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Cal.com</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Cal.com</span>
     </div>
   ),
   
@@ -58,7 +58,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Outlook Calendar</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Outlook Calendar</span>
     </div>
   ),
   
@@ -73,7 +73,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Apple Calendar</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Apple Calendar</span>
     </div>
   ),
   
@@ -88,7 +88,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Notion</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Notion</span>
     </div>
   ),
   
@@ -103,7 +103,7 @@ const Logos = {
           className="w-6 h-6 object-contain"
         />
       </div>
-      <span className="text-white/60 text-sm font-medium hidden lg:block whitespace-nowrap">Google Meet</span>
+      <span className="text-white/60 text-sm font-medium whitespace-nowrap">Google Meet</span>
     </div>
   ),
 };

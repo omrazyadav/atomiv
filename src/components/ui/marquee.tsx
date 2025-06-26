@@ -25,13 +25,17 @@ export function Marquee({
       {...props}
     >
       <div 
-        className="flex animate-marquee"
+        className="flex animate-marquee min-w-max"
         style={{
-          animation: 'marquee 30s linear infinite'
+          animation: `marquee 40s linear infinite`
         }}
       >
-        {children}
-        {children}
+        <div className="flex shrink-0">
+          {children}
+        </div>
+        <div className="flex shrink-0">
+          {children}
+        </div>
       </div>
     </div>
   )
