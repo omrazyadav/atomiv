@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { supabase, isSupabaseConfigured } from './supabase'
 import type { QuoteRequest, DemoRequest, NewsletterSubscriber, Lead, FormAnalytics } from './supabase'
 
 // Utility to get client IP and user agent
@@ -25,7 +25,7 @@ export async function trackFormEvent(
   eventType: 'view' | 'start' | 'submit' | 'abandon',
   metadata?: Record<string, any>
 ) {
-  if (!supabase) return // Skip if Supabase not configured
+  if (!isSupabaseConfigured()) return // Skip if Supabase not configured
   
   try {
     const clientInfo = getClientInfo()
@@ -56,7 +56,7 @@ async function createOrUpdateLead(
   source: 'pricing' | 'demo' | 'newsletter' | 'cta',
   additionalData: Partial<Lead> = {}
 ): Promise<string | null> {
-  if (!supabase) return null // Return null if Supabase not configured
+  if (!isSupabaseConfigured()) return null // Return null if Supabase not configured
   
   try {
     const clientInfo = getClientInfo()
@@ -121,7 +121,7 @@ export async function submitQuoteRequest(formData: {
   currentSolution?: string
   specialRequirements?: string
 }) {
-  if (!supabase) return { success: false, error: 'Database not configured' }
+  if (!isSupabaseConfigured()) return { success: false, error: 'Database not configured' }
   
   try {
     // Track form submission
@@ -183,7 +183,7 @@ export async function submitDemoRequest(formData: {
   preferredTime?: string
   message?: string
 }) {
-  if (!supabase) return { success: false, error: 'Database not configured' }
+  if (!isSupabaseConfigured()) return { success: false, error: 'Database not configured' }
   
   try {
     // Track form submission
@@ -236,7 +236,7 @@ export async function submitDemoRequest(formData: {
 
 // Subscribe to newsletter
 export async function subscribeToNewsletter(email: string, firstName?: string, lastName?: string, source: string = 'footer') {
-  if (!supabase) return { success: false, error: 'Database not configured' }
+  if (!isSupabaseConfigured()) return { success: false, error: 'Database not configured' }
   
   try {
     // Track form submission
@@ -293,7 +293,7 @@ export async function subscribeToNewsletter(email: string, firstName?: string, l
 
 // Quick CTA submission (email only)
 export async function submitCTAContact(email: string, source: string = 'cta') {
-  if (!supabase) return { success: false, error: 'Database not configured' }
+  if (!isSupabaseConfigured()) return { success: false, error: 'Database not configured' }
   
   try {
     // Track form submission

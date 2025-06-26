@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 // Simple admin password check (in production, use proper authentication)
 // Admin: admin@atomiv.com
@@ -14,6 +14,11 @@ function checkAuth(request: NextRequest) {
 export async function GET(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  
+  // Check if Supabase is properly configured
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ error: 'Database not configured. Please set up Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY).' }, { status: 503 })
   }
   
   try {
@@ -32,6 +37,13 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // Check if Supabase is properly configured
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ 
+      error: 'Database not configured. Please set up Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY) to create demo pages.' 
+    }, { status: 503 })
+  }
+
   try {
     const body = await request.json()
     

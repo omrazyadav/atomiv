@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ 
+      error: 'Database not configured. Please set up Supabase environment variables.' 
+    }, { status: 503 })
+  }
+
   try {
     const { id } = await params
     
@@ -32,6 +38,12 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ 
+      error: 'Database not configured. Please set up Supabase environment variables.' 
+    }, { status: 503 })
+  }
+
   try {
     const { id } = await params
     const body = await request.json()
@@ -82,6 +94,12 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json({ 
+      error: 'Database not configured. Please set up Supabase environment variables.' 
+    }, { status: 503 })
+  }
+
   try {
     const { id } = await params
     
