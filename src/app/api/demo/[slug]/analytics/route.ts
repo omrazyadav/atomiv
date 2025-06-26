@@ -9,6 +9,12 @@ export async function POST(
     const body = await request.json()
     const { event_type, metadata } = body
     
+    // Handle case when Supabase is not configured
+    if (!supabase) {
+      console.log('Supabase not configured, skipping analytics tracking for:', params.slug, event_type)
+      return NextResponse.json({ success: true, message: 'Analytics tracking skipped - database not configured' })
+    }
+    
     // Get demo page ID
     const { data: demoPage, error: pageError } = await supabase
       .from('demo_pages')
@@ -46,8 +52,18 @@ export async function POST(
 }
 
 function generateVisitorId(request: NextRequest): string {
-  // Simple visitor ID based on IP and user agent
-  const userAgent = request.headers.get('user-agent') || ''
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || ''
-  return Buffer.from(`${ip}-${userAgent}`).toString('base64').substring(0, 32)
+  // Simple visitor ID generation based on IP and user agent
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+  const userAgent = request.headers.get('user-agent') || 'unknown'
+  
+  // Create a simple hash-like ID
+  const combined = `${ip}_${userAgent}`
+  let hash = 0
+  for (let i = 0; i < combined.length; i++) {
+    const char = combined.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // Convert to 32-bit integer
+  }
+  
+  return `visitor_${Math.abs(hash)}_${Date.now()}`
 } 

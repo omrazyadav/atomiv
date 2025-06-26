@@ -3,6 +3,12 @@ import { supabase } from '@/lib/supabase'
 
 export async function GET() {
   try {
+    // Handle case when Supabase is not configured
+    if (!supabase) {
+      console.log('Supabase not configured, returning empty templates array')
+      return NextResponse.json([])
+    }
+    
     const { data, error } = await supabase
       .from('demo_templates')
       .select('*')
