@@ -43,33 +43,8 @@ export async function POST(request: NextRequest) {
     
     // Handle case when Supabase is not configured
     if (!supabase) {
-      console.log('Supabase not configured, returning mock success for demo creation')
-      
-      // Return a mock successful response
-      const mockData = {
-        id: `demo_${Date.now()}`,
-        slug: body.slug,
-        client_name: body.clientName,
-        company_name: body.companyName,
-        title: body.title || `${body.companyName} Demo`,
-        elevenlabs_agent_id: body.elevenlabsAgentId,
-        status: body.status || 'draft',
-        primary_color: body.primaryColor,
-        secondary_color: body.secondaryColor,
-        logo_url: body.logoUrl,
-        hero_title: body.heroTitle,
-        hero_subtitle: body.heroSubtitle,
-        features: body.features || [],
-        testimonials: body.testimonials || [],
-        custom_message: body.customMessage,
-        password_protected: body.passwordProtected || false,
-        expires_at: body.expiresAt || null,
-        created_by: 'admin',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }
-      
-      return NextResponse.json(mockData)
+      console.error('Supabase not configured - cannot create demo page')
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
     }
     
     // Prepare data for insertion

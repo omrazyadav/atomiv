@@ -10,33 +10,8 @@ export async function GET(
     
     // Handle case when Supabase is not configured
     if (!supabase) {
-      console.log('Supabase not configured, returning mock demo data')
-      
-      // Return mock demo data
-      const mockDemo = {
-        id: id,
-        slug: 'mock-demo',
-        client_name: 'Mock Client',
-        company_name: 'Mock Company',
-        title: 'Mock Demo',
-        elevenlabs_agent_id: '',
-        status: 'draft',
-        primary_color: '#3b82f6',
-        secondary_color: '#8b5cf6',
-        logo_url: '',
-        hero_title: 'Welcome to Mock Demo',
-        hero_subtitle: 'This is a mock demo page',
-        features: [],
-        testimonials: [],
-        custom_message: '',
-        password_protected: false,
-        expires_at: null,
-        created_by: 'admin',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }
-      
-      return NextResponse.json(mockDemo)
+      console.error('Supabase not configured - cannot fetch demo page')
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
     }
     
     const { data, error } = await supabase
@@ -69,33 +44,8 @@ export async function PUT(
     
     // Handle case when Supabase is not configured
     if (!supabase) {
-      console.log('Supabase not configured, returning mock success for demo update')
-      
-      // Return mock updated data
-      const mockData = {
-        id: id,
-        slug: body.slug,
-        client_name: body.clientName || body.client_name,
-        company_name: body.companyName || body.company_name,
-        title: body.title || `${body.companyName || body.company_name} Demo`,
-        elevenlabs_agent_id: body.elevenlabsAgentId || body.elevenlabs_agent_id,
-        status: body.status || 'draft',
-        primary_color: body.primaryColor || body.primary_color,
-        secondary_color: body.secondaryColor || body.secondary_color,
-        logo_url: body.logoUrl || body.logo_url,
-        hero_title: body.heroTitle || body.hero_title,
-        hero_subtitle: body.heroSubtitle || body.hero_subtitle,
-        features: body.features || [],
-        testimonials: body.testimonials || [],
-        custom_message: body.customMessage || body.custom_message,
-        password_protected: body.passwordProtected || body.password_protected || false,
-        expires_at: body.expiresAt || body.expires_at || null,
-        updated_at: new Date().toISOString(),
-        created_at: new Date().toISOString(),
-        ...(body.status === 'active' && { published_at: new Date().toISOString() })
-      }
-      
-      return NextResponse.json(mockData)
+      console.error('Supabase not configured - cannot update demo page')
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
     }
     
     // Prepare data for update
@@ -149,8 +99,8 @@ export async function DELETE(
     
     // Handle case when Supabase is not configured
     if (!supabase) {
-      console.log('Supabase not configured, returning mock success for demo deletion')
-      return NextResponse.json({ success: true })
+      console.error('Supabase not configured - cannot delete demo page')
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
     }
     
     const { error } = await supabase
