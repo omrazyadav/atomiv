@@ -20,11 +20,11 @@ export function HeroSection() {
             
             <section className="relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-16">
+                    <div className="pt-24 sm:pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-16">
                         
                         {/* Professional Badge */}
-                        <div className="text-center mb-3 sm:mb-4 md:mb-6">
-                            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm mb-3 sm:mb-4">
+                        <div className="text-center mb-4 sm:mb-4 md:mb-6">
+                            <div className="inline-flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm mb-4 sm:mb-4">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -34,8 +34,8 @@ export function HeroSection() {
                         </div>
                         
                         {/* Main Headline */}
-                        <div className="text-center mb-4 sm:mb-6 md:mb-8">
-                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight px-2">
+                        <div className="text-center mb-6 sm:mb-6 md:mb-8">
+                            <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-4 tracking-tight leading-tight px-2">
                                 Never Miss Another
                                 <br />
                                 <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -43,7 +43,7 @@ export function HeroSection() {
                                 </span>
                             </h1>
                             
-                            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 sm:mb-6 leading-relaxed px-4">
+                            <p className="text-sm sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-6 leading-relaxed px-4">
                                 AI voice agent that answers calls, books appointments, and captures leads 24/7. 
                                 Ready in just <span className="text-blue-400 font-semibold">24 hours</span> with human-level conversations.
                             </p>
